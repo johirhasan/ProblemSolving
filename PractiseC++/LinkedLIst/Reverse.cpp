@@ -30,6 +30,31 @@ node *Reverse(node *&head)
     }
     return prevptr;
 }
+//Reverse with recursive function.
+node *RecursiveReverse(node*&head)
+{
+    if(head==NULL || head->next==NULL)
+    {
+        return head;
+    }
+    node* originhead= RecursiveReverse(head->next);
+    head->next->next=head;
+    head->next=NULL;
+    return originhead;
+}
+
+void deletion(node *&head, int val)
+{
+    node *temp = head;
+    while (temp->next->data != val)
+    {
+        temp = temp->next;//get error when we want delete head.(Corner case)
+    }
+    node *todelete = temp->next;
+    temp->next = temp->next->next;
+
+    delete todelete;
+}
 
 bool Search(node *head, int key)
 {
@@ -99,5 +124,12 @@ int main()
 
     node *newhead = Reverse(head);
     display(newhead);
+
+    deletion(newhead, 8);
+    display(newhead);
+
+    node *originhead = RecursiveReverse(newhead);
+    display(originhead);
+
     return 0;
 }
