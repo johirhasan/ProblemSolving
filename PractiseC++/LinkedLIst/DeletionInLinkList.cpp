@@ -14,12 +14,6 @@ public:
     }
 };
 
-void insertionAtHead(node *&head, int val)
-{
-    node *n = new node(val);
-    n->next = head;
-    head = n;
-}
 //For corner case
 void headDeletion(node *&head)//dont need to take int val beacause we know that we want to delete head.
 {
@@ -39,6 +33,13 @@ void deletion(node *&head, int val)
     temp->next = temp->next->next;
 
     delete todelete;
+}
+
+void insertionAtHead(node *&head, int val)
+{
+    node *n = new node(val);
+    n->next = head;
+    head = n;
 }
 
 void display(node *head)
